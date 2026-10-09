@@ -1,0 +1,244 @@
+<title>Political Battle Cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+/* Layout: a navy masthead like the cards' title bands, a sticky topic bar, then shelves of portrait cards grouped by topic */
+:root{
+  --bg:#f2f3f6; --surface:#ffffff; --ink:#15213a; --muted:#5a6479; --line:#dde1e9;
+  --navy:#16264a; --navy-ink:#f3efe3; --gold:#a97a1f; --gold-soft:#f3e8cf; --chip:#e7eaf0;
+  --display:"Cinzel","Trajan Pro",Georgia,serif;
+  --body:"Alegreya Sans","Gill Sans","Segoe UI",system-ui,sans-serif;
+  --shadow:0 1px 2px rgba(21,33,58,.08),0 6px 18px rgba(21,33,58,.08);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d1424; --surface:#151f35; --ink:#e7ebf3; --muted:#9aa4ba; --line:#26324c;
+  --navy:#0a1020; --navy-ink:#efe8d4; --gold:#d9ad55; --gold-soft:#2c2614; --chip:#1d2943;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.3); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1424; --surface:#151f35; --ink:#e7ebf3; --muted:#9aa4ba; --line:#26324c;
+  --navy:#0a1020; --navy-ink:#efe8d4; --gold:#d9ad55; --gold-soft:#2c2614; --chip:#1d2943;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.3); color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.5 var(--body)}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+header.mast{background:var(--navy);color:var(--navy-ink);border-bottom:3px solid var(--gold)}
+header.mast .wrap{padding-block:clamp(28px,5vw,52px);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:end}
+.eyebrow{font:600 12px/1 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+h1{font:600 clamp(34px,6vw,60px)/1.02 var(--display);margin:.35em 0 .25em;letter-spacing:.02em;text-wrap:balance}
+h1 .dot{color:var(--gold)}
+.lede{max-width:46ch;margin:0;opacity:.88;font-size:18px}
+blockquote{margin:0;padding:18px 20px;border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);border-radius:4px;font-style:italic;font-size:16px;line-height:1.45}
+blockquote cite{display:block;margin-top:8px;font:600 12px/1 var(--body);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;gap:12px;align-items:center;padding-block:12px;flex-wrap:wrap}
+.search{flex:1 1 220px;min-width:0;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:0 14px}
+.search input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;font-size:16px;padding:9px 0;outline:none}
+.search:focus-within{border-color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 100%;padding-bottom:2px}
+@media (max-width:600px){.bar{position:static}.chip{font-size:13px;padding:7px 11px}}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid transparent;background:var(--chip);color:var(--ink);font:500 14px/1 var(--body);padding:8px 13px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.chip:focus-visible,.btn:focus-visible,.thumb:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.count{font-size:14px;color:var(--muted);white-space:nowrap}
+main .wrap{padding-block:12px 64px}
+section.topic{padding-top:36px}
+.topic-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:18px}
+h2{font:600 22px/1.2 var(--display);letter-spacing:.04em;margin:0}
+.topic-head p{margin:0;color:var(--muted);font-size:15px;flex:1 1 240px}
+.sharesec{font-size:13px;padding:6px 10px}
+.linkbar{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:30;width:min(560px,calc(100% - 32px));background:var(--ink);color:var(--bg);padding:12px 14px;border-radius:4px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px}
+.linkbar input{flex:1 1 220px;min-width:0;font:inherit;padding:7px 9px;border-radius:3px;border:0}
+.linkbar button{font:inherit;background:transparent;color:var(--bg);border:1px solid currentColor;border-radius:3px;padding:6px 10px;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:22px 18px}
+@media (max-width:520px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}}
+.item{display:flex;flex-direction:column;gap:8px;min-width:0}
+.thumb{position:relative;display:block;padding:0;border:0;background:var(--surface);border-radius:3px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:3/4;cursor:zoom-in;width:100%}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .35s ease}
+.thumb:hover img{transform:scale(1.025)}
+.badge{position:absolute;left:8px;bottom:8px;background:var(--navy);color:var(--navy-ink);font:600 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;border-radius:2px}
+.series{font:600 11.5px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.item h3{font:700 17px/1.2 var(--body);margin:0;text-wrap:balance}
+.item .sub{margin:0;color:var(--muted);font-size:14.5px;line-height:1.35}
+.actions{display:flex;gap:8px;align-items:center;margin-top:auto;padding-top:4px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);font:600 14px/1 var(--body);padding:8px 12px;border-radius:3px;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn svg{width:15px;height:15px}
+.meta{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.empty{padding:60px 0;text-align:center;color:var(--muted)}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer .wrap{padding-block:24px}
+/* viewer */
+.viewer{position:fixed;inset:0;z-index:20;background:rgba(8,12,22,.92);display:flex;flex-direction:column}
+.vtop{display:flex;align-items:center;gap:12px;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 10px;color:#eef1f7}
+.vtop .t{flex:1;min-width:0}
+.vtop .t b{display:block;font:600 16px/1.2 var(--body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vtop .t span{font-size:13px;opacity:.7}
+.vtop .btn{background:#eef1f7;color:#0d1424;border-color:#eef1f7}
+.vtop .btn.ghost{background:transparent;color:#eef1f7;border-color:rgba(255,255,255,.3)}
+.vlink{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;padding:0 16px 10px;color:#eef1f7;font-size:14px}
+.vlink input{flex:1 1 260px;min-width:0;font:inherit;font-size:14px;padding:8px 10px;border-radius:3px;border:1px solid rgba(255,255,255,.35);background:#0d1424;color:#eef1f7}
+.vbody{flex:1;overflow:auto;padding:8px 16px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:16px}
+.vbody img{max-width:min(100%,900px);height:auto;border-radius:2px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:4px;font-size:15px;z-index:30;max-width:calc(100% - 32px)}
+@media (max-width:760px){header.mast .wrap{grid-template-columns:1fr;gap:20px}}
+@media (prefers-reduced-motion:reduce){.thumb img{transition:none}}
+
+@media (max-width:600px){.vtop{flex-wrap:wrap;gap:8px}.vtop .t{flex:1 1 100%}.vtop .btn{padding:7px 10px;font-size:13px}}
+</style>
+
+<header class="mast">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Culture &amp; politics</div>
+      <h1>Political <span class="dot">·</span> Battle Cards</h1>
+      <p class="lede">One-page cards on current political issues. Tap any card to view it full size, then download it to print or share.</p>
+    </div>
+    <blockquote>“Righteousness exalts a nation, but sin is a reproach to any people.”<cite>Proverbs 14:34</cite></blockquote>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <label class="search" for="q">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search titles and topics" autocomplete="off">
+    </label>
+    <span class="count" id="count"></span>
+    <div class="chips" id="chips" role="toolbar" aria-label="Filter by topic"></div>
+  </div>
+</div>
+
+<main><div class="wrap" id="shelves"></div></main>
+
+<footer><div class="wrap">Free to share. Please share the cards as they are.</div></footer>
+
+<div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-labelledby="vtitle">
+  <div class="vtop">
+    <div class="t"><b id="vtitle"></b><span id="vmeta"></span></div>
+    <button class="btn ghost" id="vshare" type="button">Copy link</button>
+    <button class="btn" id="vdl" type="button"></button>
+    <a class="btn ghost" id="vopen" href="#" target="_blank" rel="noopener">Open file</a>
+    <button class="btn ghost" id="vclose" type="button" aria-label="Close">Close</button>
+  </div>
+  <div class="vlink" id="vlink" hidden><input id="vlinkbox" readonly aria-label="Link to this card"><span id="vlinkmsg"></span></div>
+  <div class="vbody" id="vbody"></div>
+</div>
+<div class="toast" id="toast" hidden></div>
+<div class="linkbar" id="linkbar" hidden><span id="linkmsg"></span><input id="linkbox2" readonly aria-label="Link"><button type="button" id="linkclose">Close</button></div>
+
+<script>
+const TOPICS=[{id:'political',name:'Political Battle Cards',blurb:'Facts, numbers, and arguments on the issues of the day.'}];
+const inTopic=(it,id)=>it.topic===id||(it.also||[]).includes(id);
+const ITEMS=[{"id": "war-on-strong-men", "topic": "political", "series": "Political Battle Card", "title": "The War on Strong Men", "sub": "A nation does not become stronger by teaching its men to become weaker", "kind": "card", "file": "files/war-on-strong-men.jpg", "dl": "Political Battle Card - The War on Strong Men.jpg", "pages": ["files/war-on-strong-men.jpg"], "n": 1, "thumb": "thumbs/war-on-strong-men.webp", "size": 738596}, {"id": "political-battle-card-44", "topic": "political", "series": "Political Battle Card", "title": "If 44% Justify Political Violence…", "sub": "How many would justify vote fraud?", "kind": "card", "file": "files/political-battle-card-44.jpg", "dl": "Political Battle Card - If 44% Justify Political Violence.jpg", "pages": ["files/political-battle-card-44.jpg"], "n": 1, "thumb": "thumbs/political-battle-card-44.webp", "size": 725229}, {"id": "womens-rights-trans-rights", "topic": "political", "series": "Political Battle Card", "title": "The Sacrifice of Women’s Rights?", "sub": "Title IX, fairness, and women’s sports", "kind": "card", "file": "files/womens-rights-trans-rights.png", "dl": "Political Battle Card - The Sacrifice of Women’s Rights.png", "pages": ["files/womens-rights-trans-rights.png"], "n": 1, "thumb": "thumbs/womens-rights-trans-rights.webp", "size": 2531145}, {"id": "democrats-murderers", "topic": "political", "series": "Political Battle Card", "title": "Democrats Are the Murderers", "sub": "The historical record on assassinations, the KKK, and Jim Crow", "kind": "card", "file": "files/democrats-murderers.jpg", "dl": "Political Battle Card - Democrats Are the Murderers.jpg", "pages": ["files/democrats-murderers.jpg"], "n": 1, "thumb": "thumbs/democrats-murderers.webp", "size": 614165}, {"id": "trump-accomplishments", "topic": "political", "series": "Political Battle Card", "title": "Trump’s Accomplishments", "sub": "America First, put into action", "kind": "card", "file": "files/trump-accomplishments.jpg", "dl": "Political Battle Card - Trump’s Accomplishments.jpg", "pages": ["files/trump-accomplishments.jpg"], "n": 1, "thumb": "thumbs/trump-accomplishments.webp", "size": 474740}];
+const KIND={card:'Card',series:'Card series',print:'Print sheet',booklet:'Booklet'};
+const $=s=>document.querySelector(s);
+const fmt=b=>b>1e6?(b/1e6).toFixed(1)+' MB':Math.round(b/1e3)+' KB';
+const ext=f=>f.split('.').pop().toUpperCase();
+const DL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>';
+let topic='all', query='';
+
+function metaFor(it){return `${KIND[it.kind]} · ${ext(it.file)}${it.n>1?` · ${it.n} pages`:''} · ${fmt(it.size)}`}
+
+function renderChips(){
+  const all=[{id:'all',name:'All'}].concat(TOPICS.filter(t=>ITEMS.some(i=>inTopic(i,t.id))));
+  $('#chips').innerHTML=all.map(t=>`<button class="chip" type="button" data-t="${t.id}" aria-pressed="${t.id===topic}">${t.name}</button>`).join('');
+}
+function matches(it){
+  if(topic!=='all'&&!inTopic(it,topic)) return false;
+  if(!query) return true;
+  const hay=(it.title+' '+it.sub+' '+it.series+' '+(TOPICS.find(t=>t.id===it.topic)||{}).name).toLowerCase();
+  return query.toLowerCase().split(/\s+/).every(w=>hay.includes(w));
+}
+function card(it){
+  return `<article class="item">
+    <button class="thumb" type="button" data-open="${it.id}" aria-label="View ${esc(it.title)}">
+      <img src="${it.thumb}" alt="" loading="lazy">
+      ${it.kind!=='card'?`<span class="badge">${KIND[it.kind]}${it.n>1?' · '+it.n+' pp':''}</span>`:''}
+    </button>
+    <div class="series">${esc(it.series)}</div>
+    <h3>${esc(it.title)}</h3>
+    <p class="sub">${esc(it.sub)}</p>
+    <div class="actions">
+      <button class="btn" type="button" data-dl="${it.id}">${DL}Download</button>
+      <span class="meta">${ext(it.file)} · ${fmt(it.size)}</span>
+    </div>
+  </article>`;
+}
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function render(){
+  const list=ITEMS.filter(matches);
+  $('#count').textContent=`${list.length} of ${ITEMS.length} resources`;
+  if(!list.length){$('#shelves').innerHTML='<p class="empty">No resources match that search. Try a different word or choose All.</p>';return}
+  $('#shelves').innerHTML=TOPICS.filter(t=>topic==='all'||t.id===topic).map(t=>{
+    const its=list.filter(i=>inTopic(i,t.id)); if(!its.length) return '';
+    return `<section class="topic" id="${t.id}"><div class="topic-head"><h2>${t.name}</h2><p>${t.blurb}</p><button class="btn ghost sharesec" type="button" data-share-topic="${t.id}">Copy link to this section</button></div><div class="grid">${its.map(card).join('')}</div></section>`;
+  }).join('');
+}
+
+let downloads=null;
+(async()=>{try{downloads=await window.claude?.use?.('downloads')}catch(e){downloads=null}})();
+function toast(msg){const t=$('#toast');t.textContent=msg;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,3200)}
+async function download(id){
+  const it=ITEMS.find(i=>i.id===id); if(!it) return;
+  const fail=(why)=>{ if($('#viewer').hidden) openViewer(id); shareLinkMsg(it,why); };
+  if(!downloads){ fail(''); return; }
+  try{
+    const blob=await (await fetch(it.file)).blob();
+    await downloads.save({filename:it.dl,data:blob});
+    toast('Saved '+it.dl);
+  }catch(e){
+    if(e&&e.code==='declined') return;
+    if(e&&e.code==='rate_limited'){toast('A download is already waiting for your confirmation.');return}
+    fail(e&&e.code?e.code:'');
+  }
+}
+function shareLinkMsg(it,why){
+  const t=$('#toast');
+  t.innerHTML='Download isn’t available here. Tap <b>Open file</b> at the top to open it in a new tab, then save or share it from there.'+(why?' <span style="opacity:.6">('+why+')</span>':'');
+  t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,9000);
+}
+let lastFocus=null;
+function openViewer(id){
+  const it=ITEMS.find(i=>i.id===id); if(!it) return;
+  lastFocus=document.activeElement;
+  $('#vtitle').textContent=it.title;
+  $('#vmeta').textContent=metaFor(it);
+  $('#vdl').innerHTML=DL+'Download';$('#vdl').dataset.dl=it.id;$('#vopen').href=new URL(it.file,location.href).href;
+  $('#vbody').innerHTML=it.pages.map((p,k)=>`<img loading="lazy" src="${p}" alt="${esc(it.title)}${it.n>1?', page '+(k+1):''}">`).join('');
+  $('#viewer').hidden=false;$('#vlink').hidden=true;document.body.style.overflow='hidden';$('#vbody').scrollTop=0;$('#vclose').focus();
+  try{history.replaceState(null,'','#'+id)}catch(e){}
+}
+function closeViewer(){$('#viewer').hidden=true;document.body.style.overflow='';try{history.replaceState(null,'',location.pathname+location.search)}catch(e){} lastFocus&&lastFocus.focus()}
+
+document.addEventListener('click',e=>{
+  const c=e.target.closest('[data-t]'); if(c){topic=c.dataset.t;renderChips();render();return}
+  const o=e.target.closest('[data-open]'); if(o){openViewer(o.dataset.open);return}
+  const d=e.target.closest('[data-dl]'); if(d){download(d.dataset.dl);return}
+  if(e.target.id==='vclose'||e.target.id==='vbody'||e.target.id==='viewer') closeViewer();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#viewer').hidden) closeViewer()});
+$('#q').addEventListener('input',e=>{query=e.target.value.trim();render()});
+const PAGE_URL='https://claude.ai/artifact/1KrSbPfwKB7rCbCPyRvW3V';
+document.getElementById('vshare').addEventListener('click',()=>{
+  const id=$('#vdl').dataset.dl; const link=PAGE_URL+'#'+id;
+  const row=$('#vlink'), box=$('#vlinkbox'); box.value=link; row.hidden=false;
+  box.focus(); box.select(); box.setSelectionRange(0,link.length);
+  let ok=false; try{ok=document.execCommand('copy')}catch(e){}
+  $('#vlinkmsg').textContent=ok?'Copied. Paste it in a text or email.':'Select the link and copy it.';
+  if(!ok&&navigator.clipboard){navigator.clipboard.writeText(link).then(()=>{$('#vlinkmsg').textContent='Copied. Paste it in a text or email.'}).catch(()=>{})}
+});
+
+function shareLink(link,what){
+  const bar=$('#linkbar'),box=$('#linkbox2');box.value=link;bar.hidden=false;box.focus();box.select();box.setSelectionRange(0,link.length);
+  let ok=false;try{ok=document.execCommand('copy')}catch(e){}
+  $('#linkmsg').textContent=ok?'Link to '+what+' copied. Paste it in a text or email.':'Copy this link to '+what+':';
+  if(!ok&&navigator.clipboard){navigator.clipboard.writeText(link).then(()=>{$('#linkmsg').textContent='Link to '+what+' copied. Paste it in a text or email.'}).catch(()=>{})}
+}
+document.getElementById('linkclose').addEventListener('click',()=>{$('#linkbar').hidden=true});
+document.addEventListener('click',e=>{const s=e.target.closest('[data-share-topic]');if(!s)return;const tp=TOPICS.find(x=>x.id===s.dataset.shareTopic);shareLink(PAGE_URL+'#t-'+s.dataset.shareTopic,'the '+(tp?tp.name:'')+' section')});
+renderChips();render();
+const h=location.hash.slice(1); if(h.startsWith('t-')&&TOPICS.some(x=>x.id===h.slice(2))){topic=h.slice(2);renderChips();render();} else if(h&&ITEMS.some(i=>i.id===h)) openViewer(h);
+</script>

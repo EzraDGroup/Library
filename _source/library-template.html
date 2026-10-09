@@ -93,6 +93,21 @@ footer .wrap{padding-block:24px}
 @media (prefers-reduced-motion:reduce){.thumb img{transition:none}}
 
 @media (max-width:600px){.vtop{flex-wrap:wrap;gap:8px}.vtop .t{flex:1 1 100%}.vtop .btn{padding:7px 10px;font-size:13px}}
+
+/* latest from the blog */
+.blog{background:var(--surface);border-bottom:1px solid var(--line)}
+.blog .wrap{padding-block:22px 24px}
+.blog-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.blog-head h2{font-size:19px}
+.blog-head p{margin:0;color:var(--muted);font-size:15px;flex:1 1 220px}
+.blog-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media (max-width:760px){.blog-list{grid-template-columns:1fr;gap:12px}}
+.post{display:flex;gap:12px;align-items:flex-start;text-decoration:none;color:var(--ink);min-width:0}
+.post img{flex:none;width:96px;height:64px;object-fit:cover;border-radius:3px;box-shadow:var(--shadow);background:var(--chip)}
+.post b{display:block;font:700 16px/1.25 var(--body);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;text-wrap:balance}
+.post span{display:block;margin-top:4px;font-size:13px;color:var(--muted)}
+.post:hover b{text-decoration-thickness:2px}
+.post:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 </style>
 
 <header class="mast">
@@ -105,6 +120,41 @@ footer .wrap{padding-block:24px}
     <blockquote>“For Ezra had set his heart to study the Law of the LORD, and to do it and to teach his statutes and rules in Israel.”<cite>Ezra 7:10</cite></blockquote>
   </div>
 </header>
+
+<section class="blog" id="blog" hidden aria-labelledby="blogtitle">
+  <div class="wrap">
+    <div class="blog-head">
+      <h2 id="blogtitle">Latest from the Blog</h2>
+      <p>Recent writing from the Ezra Discipleship Group blog.</p>
+      <a class="btn ghost" href="https://ezradgroup.blogspot.com/" target="_blank" rel="noopener">Read the blog</a>
+    </div>
+    <ul class="blog-list" id="bloglist"></ul>
+  </div>
+</section>
+<script>
+function edgBlog(data){
+  try{
+    var list=document.getElementById('bloglist'), entries=(data.feed&&data.feed.entry)||[];
+    var esc=function(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;};
+    entries.slice(0,3).forEach(function(e){
+      var link=(e.link||[]).filter(function(l){return l.rel==='alternate';})[0];
+      if(!link) return;
+      var title=e.title&&e.title.$t||'Untitled';
+      var date=new Date(e.published.$t).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+      var img=e.media$thumbnail&&e.media$thumbnail.url||'';
+      img=img.replace(/=s72[^\/]*$/,'=w240-h160-c').replace(/\/s72(-c)?\//,'/w240-h160-c/');
+      var li=document.createElement('li');
+      li.innerHTML='<a class="post" href="'+esc(link.href)+'" target="_blank" rel="noopener">'+
+        (img?'<img src="'+esc(img)+'" alt="" loading="lazy">':'')+
+        '<div><b>'+esc(title)+'</b><span>'+esc(date)+'</span></div></a>';
+      list.appendChild(li);
+    });
+    if(list.children.length) document.getElementById('blog').hidden=false;
+  }catch(err){}
+}
+</script>
+<script src="https://ezradgroup.blogspot.com/feeds/posts/default?alt=json-in-script&amp;max-results=3&amp;callback=edgBlog" async></script>
+
 
 <div class="bar">
   <div class="wrap">

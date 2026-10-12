@@ -18,7 +18,7 @@ replaces the download code with a plain download link, uses location for share l
 
 Conventions:
 - One card lives in exactly one section; other sections link to it via `also`.
-- Sermons are ordered newest first; pre-sermon card before highlights for each Sunday.
+- Sermons are ordered newest first; Sermon Highlights card first, then that Sunday's pre-sermon materials.
 - Drop a "-P" suffix from incoming file names (it marks printed copies).
 - Long PDFs: page previews rendered with pdftoppm; large image PDFs recompressed.
 - Repository name is "Library" (capital L) — URLs are case-sensitive: https://ezradgroup.github.io/Library/

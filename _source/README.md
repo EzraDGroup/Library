@@ -9,7 +9,7 @@ Three pages, built from the catalogs in this folder:
 | Growth & Development | devcatalog.json | growth-template.html (`__DEVURL__` placeholder) | /growth/ |
 
 Each catalog entry: id, topic (section id), series, title, sub, kind, file, dl (download filename),
-size, pages (preview images), n (page count), thumb, optional `also` (list of section ids that show
+size, pages (preview images), n (page count), thumb, optional `last_in` (list of section ids where the card shows at the very end, after the subheading groups), optional `also` (list of section ids that show
 the card as an "Additional resources" link) and `sub_in` ({section: subheading}).
 
 Templates contain `__CATALOG__`, replaced with the JSON catalog. The templates were written for a

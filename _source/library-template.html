@@ -253,10 +253,11 @@ function relatedFor(t){
   return `<div class="related"><h3 class="subhead">Additional resources</h3><ul>${ids.map(id=>{const i=ITEMS.find(x=>x.id===id);const tp=TOPICS.find(x=>x.id===i.topic);return `<li><button type="button" class="rlink" data-open="${i.id}">${esc(i.title)}</button><span>${esc(tp?tp.name:'')}</span></li>`}).join('')}</ul></div>`;
 }
 function gridFor(tid,its){
-  const main=its.filter(i=>!(i.sub_in||{})[tid]); const groups={};
+  const main=its.filter(i=>!(i.sub_in||{})[tid]&&!(i.last_in||[]).includes(tid)); const tail=its.filter(i=>(i.last_in||[]).includes(tid)); const groups={};
   its.forEach(i=>{const g=(i.sub_in||{})[tid]; if(g)(groups[g]=groups[g]||[]).push(i)});
   let h=main.length?`<div class="grid">${main.map(card).join('')}</div>`:'';
   for(const g in groups) h+=`<h3 class="subhead">${esc(g)}</h3><div class="grid">${groups[g].map(card).join('')}</div>`;
+  if(tail.length) h+=`<div class="grid">${tail.map(card).join('')}</div>`;
   return h;
 }
 function render(){

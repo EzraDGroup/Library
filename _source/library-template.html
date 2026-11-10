@@ -160,7 +160,7 @@ function edgBlog(data){
   <div class="wrap">
     <label class="search" for="q">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input id="q" type="search" placeholder="Search titles and topics" autocomplete="off">
+      <input id="q" type="search" placeholder="Search titles, topics, and tags" autocomplete="off">
     </label>
     <span class="count" id="count"></span>
     <div class="chips" id="chips" role="toolbar" aria-label="Filter by topic"></div>
@@ -229,7 +229,7 @@ function renderChips(){
 function matches(it){
   if(topic!=='all'&&!inTopic(it,topic)) return false;
   if(!query) return true;
-  const hay=(it.title+' '+it.sub+' '+it.series+' '+(TOPICS.find(t=>t.id===it.topic)||{}).name).toLowerCase();
+  const hay=(it.title+' '+it.sub+' '+it.series+' '+(TOPICS.find(t=>t.id===it.topic)||{}).name+' '+(it.tags||[]).join(' ')).toLowerCase();
   return query.toLowerCase().split(/\s+/).every(w=>hay.includes(w));
 }
 function card(it){

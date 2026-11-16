@@ -227,6 +227,7 @@ Hidden search tags for each card. Tell Claude any changes (e.g. "remove *marriag
 ## Shepherding & Care
 
 - **Deacon Shepherding Guide and Call Script** (Deacon Ministry): deacons, shepherding, covenant, prayer, the cross, church, love
+- **When Someone You Love Is Sick (Reading Copy)** (Scripture Companion): comfort, hope, suffering, prayer, faith, peace, Lamentations, Psalms, Isaiah, Matthew, Philippians, Romans, James
 
 ## Outreach & Printables
 

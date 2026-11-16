@@ -235,6 +235,7 @@ Hidden search tags for each card. Tell Claude any changes (e.g. "remove *marriag
 - **Color Scripture Cards** (Printables): church, love, bible study
 - **When You Need Reminding** (Printables): identity, Romans, Genesis, Isaiah
 - **48 Promises of God: Scripture Cards** (Printables): promises of god, identity, grace, love, faith, children, peace
+- **When Someone You Love Is Sick** (Printables): comfort, hope, suffering, prayer, faith, peace, Lamentations, Psalms, Isaiah, Matthew, Philippians, Romans, James
 
 ## Ezra Meeting 11.11.26
 - **Conscience and the Law** (Position Paper): christian liberty, things indifferent, weak conscience, conscience, god's law, sin, bible study, faith, church, judgment, Romans, Acts, 1 Corinthians

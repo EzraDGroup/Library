@@ -172,6 +172,10 @@ Hidden search tags for each card. Tell Claude any changes (e.g. "remove *marriag
 - **How to Read Setting in Biblical Narrative** (How to Read the Bible · Week 8): interpretation, narrative, bible study, children
 - **Biblical Design Patterns** (How to Read the Bible · Week 9): bible study, suffering, Genesis
 - **The Art of Biblical Poetry** (How to Read the Bible · Week 10): truth, bible study, sin, communication, Exodus, Psalms
+- **Metaphor: Imagery in Biblical Poetry** (How to Read the Bible · Week 11): interpretation, bible study, creation, Psalms, Genesis
+- **How to Read the Book of Psalms** (How to Read the Bible · Week 12): interpretation, bible study, prayer, worship, kingdom of god, Psalms
+- **How to Read the Prophets** (How to Read the Bible · Week 13): interpretation, bible study, covenant, judgment, repentance, hope, kingdom of god, Isaiah
+- **How to Read the Law and Biblical Discourse** (How to Read the Bible · Week 14): interpretation, bible study, god's law, covenant, obedience, love, Exodus, Leviticus, Matthew
 
 ## Hermeneutics
 

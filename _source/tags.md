@@ -149,6 +149,7 @@ Hidden search tags for each card. Tell Claude any changes (e.g. "remove *marriag
 - **The Five Aspects of Man (Summary)** (Five Aspects of Man): creation, gender, identity, marriage, purpose
 - **Lord of the Earth: Created** (Five Aspects of Man · Chapter 1): creation, government, work
 - **Biblical Patterns of Masculinity and Femininity** (Five Aspects of Man): gender, creation, church, wisdom, glorification, marriage, identity, Proverbs, Romans, Isaiah
+- **Cain and Abel: Was an Animal Sacrifice Required?** (Five Aspects of Man): worship, sacrifice, faith, obedience, creation, sin, bible study, interpretation, Genesis, Hebrews, Proverbs
 
 ## Bible Study
 

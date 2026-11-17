@@ -247,3 +247,4 @@ Hidden search tags for each card. Tell Claude any changes (e.g. "remove *marriag
 - **Conscience and the Law** (Position Paper): christian liberty, things indifferent, weak conscience, conscience, god's law, sin, bible study, faith, church, judgment, Romans, Acts, 1 Corinthians
 - **Paul’s Ministry of Reasoning & Persuasion** (Scripture Study · Teacher’s Guide): apologetics, evangelism, persuasion, reasoning, truth, bible study, gospel, faith, resurrection, kingdom of god, creation, Acts, 2 Corinthians, 1 Corinthians
 - **Jesus Christ: The Eternal I AM** (Teaching Card): jesus christ, identity, trinity, salvation, resurrection, gospel, eternal life, I AM, John, Exodus, Revelation
+- **Jesus and the Children (Luke 18:15–17)** (Sermon Highlights): children, kingdom of god, grace, faith, church, family, humility, gospel, Luke

@@ -55,6 +55,11 @@ Hidden search tags for each card. Tell Claude any changes (e.g. "remove *marriag
 - **The King Has Taken His Throne** (Christians Will Win Down Here · Card 2): christ's lordship, kingdom of god, nations, hope, heaven
 - **The Nations Are His Inheritance** (Christians Will Win Down Here · Card 3): nations, great commission, promises of god, discipleship, obedience, kingdom of god, covenant, Genesis, Isaiah, Matthew
 - **Believe the Promises. Live Like They’re True.** (Christians Will Win Down Here · Card 4): kingdom of god, promises of god, nations, culture, obedience, prayer, church, 1 Corinthians, Proverbs
+- **Conflictual Loving** (Taking Clichés Captive · Card 1): love, judgment, courage, justice, self-defense, enemy-love, mind, Proverbs, Romans, Matthew
+- **Love the Enemy—and His Victim** (Taking Clichés Captive · Card 2): love, enemy-love, neighbor-love, justice, government, mind, Luke, Romans, Matthew
+- **Sacrifice Is Not Passivity** (Taking Clichés Captive · Card 3): love, marriage, courage, sacrifice, protection, leadership, mind, Ephesians, John, Psalms
+- **Take the Cliché Captive** (Taking Clichés Captive · Card 4): mind, truth, critical thinking, discernment, obedience, love, interpretation, 2 Corinthians, Proverbs, John
+- **Taking Clichés Captive (4-in-1)** (Taking Clichés Captive): mind, love, enemy-love, truth, critical thinking, courage, justice, 2 Corinthians, Matthew, Romans
 
 ## Ezra Discipleship
 

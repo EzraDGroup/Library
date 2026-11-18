@@ -129,6 +129,7 @@ Hidden search tags for each card. Tell Claude any changes (e.g. "remove *marriag
 ## Covenant Study
 
 - **The Biblical Covenants** (The Biblical Covenants): covenant, promises of god, creation, god's law, forgiveness, kingdom of god, nations
+- **The Covenant of Preservation** (Covenant Study · Lesson 2): flood, common grace, noah, covenant, creation, grace, promises of god, judgment, family, government, Genesis, Romans, 1 Peter
 
 ## Glossary
 

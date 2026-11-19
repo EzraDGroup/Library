@@ -117,6 +117,7 @@ Hidden search tags for each card. Tell Claude any changes (e.g. "remove *marriag
 - **Systematic Theology (2-in-1)** (Systematic Theology): bible study, creation, communication, salvation, holy spirit, interpretation, obedience, Deuteronomy, Matthew
 - **Gifts of the Holy Spirit** (Doctrine): holy spirit, spiritual gifts, truth, love, 1 Corinthians, Galatians
 - **The Divinity of Each Person in the Trinity** (Theology): trinity, holy spirit, Romans, 1 Corinthians
+- **Why Did Jesus Fulfill the Law?** (Theology): god's law, obedience, covenant, the cross, kingdom of god, atonement, jesus christ, Romans, Galatians, Jeremiah, Hebrews, Matthew
 
 ## Doctrines of Grace
 

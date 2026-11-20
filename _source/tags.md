@@ -203,6 +203,7 @@ Hidden search tags for each card. Tell Claude any changes (e.g. "remove *marriag
 
 ## Sermons
 
+- **Remembering the Love of the Lord** (Pre-Sermon Notes): confession, remembrance, thanksgiving, love, salvation, sin, worship, repentance, obedience, Psalms
 - **The Children of the Covenant** (Sermon Highlights): circumcision, infant baptism, covenant, children, promises of god, baptism, faith, marriage, prayer, Genesis, Galatians
 - **The Covenant Promise** (Pre-Sermon Notes): circumcision, abraham, promises of god, covenant, faith, baptism, family, nations, identity, Genesis, Galatians
 - **Grace That Doesn’t Let Go** (Sermon Highlights): grace, love, church, holy spirit, family, kingdom of god, sin, 1 Corinthians

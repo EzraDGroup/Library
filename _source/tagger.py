@@ -98,6 +98,7 @@ MANUAL = {
  'exegesis-eisegesis-narcigesis': ['exegesis', 'bible study'],
  'children-of-the-covenant-highlights': ['infant baptism', 'circumcision'],
  'pre-sermon-covenant-promise': ['abraham', 'circumcision'],
+ 'pre-sermon-remembering-love-of-the-lord': ['thanksgiving', 'remembrance', 'confession'],
  'covenant-of-preservation-noah': ['noah', 'common grace', 'flood'],
 }
 

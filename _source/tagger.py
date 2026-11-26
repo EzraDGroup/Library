@@ -99,6 +99,7 @@ MANUAL = {
  'children-of-the-covenant-highlights': ['infant baptism', 'circumcision'],
  'pre-sermon-covenant-promise': ['abraham', 'circumcision'],
  'pre-sermon-remembering-love-of-the-lord': ['thanksgiving', 'remembrance', 'confession'],
+ 'covenant-of-creation': ['adam', 'image of god', 'sabbath'],
  'covenant-of-preservation-noah': ['noah', 'common grace', 'flood'],
 }
 

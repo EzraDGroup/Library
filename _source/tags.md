@@ -256,3 +256,5 @@ Hidden search tags for each card. Tell Claude any changes (e.g. "remove *marriag
 - **Paul’s Ministry of Reasoning & Persuasion** (Scripture Study · Teacher’s Guide): apologetics, evangelism, persuasion, reasoning, truth, bible study, gospel, faith, resurrection, kingdom of god, creation, Acts, 2 Corinthians, 1 Corinthians
 - **Jesus Christ: The Eternal I AM** (Teaching Card): jesus christ, identity, trinity, salvation, resurrection, gospel, eternal life, I AM, John, Exodus, Revelation
 - **Jesus and the Children (Luke 18:15–17)** (Sermon Highlights): children, kingdom of god, grace, faith, church, family, humility, gospel, Luke
+
+- **The Covenant of Creation** (Covenant Study · Lesson 1): adam, image of god, sabbath, covenant, creation, marriage, obedience, worship, church, sovereignty of god, Genesis, Hebrews, Exodus

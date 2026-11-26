@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Covenant of Creation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: quiet, reverent study booklet on a reading table
+   IDEA: the printed saddle-stitched booklet itself, opened on a dark desk
+   PICTURE: the book, as large as the screen allows, with real page turns
+   COLOUR and TYPE: the booklet's own navy and gold; Libre Baskerville + Source Sans 3
+   LAYOUT: slim title line, book centred, controls and page strip beneath */
+:root{color-scheme:light dark;--bg:light-dark(#1b2740,#0f1626);--bg2:light-dark(#22314f,#162036);--ink:#f3efe4;--mute:#b9c0cf;--gold:#c9a34a}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html,body{height:100%}
+body{margin:0;background:radial-gradient(ellipse at 50% 35%,var(--bg2),var(--bg) 70%);color:var(--ink);font:16px/1.5 "Source Sans 3",system-ui,sans-serif;overflow-x:clip;display:flex;flex-direction:column;min-height:100vh}
+header{padding:16px max(4vw,16px) 6px;display:flex;align-items:baseline;justify-content:space-between;gap:8px 20px;flex-wrap:wrap}
+h1{font:700 clamp(20px,2.6vw,28px)/1.1 "Libre Baskerville",Georgia,serif;margin:0;text-wrap:balance}
+h1 small{display:block;font:400 14px/1.4 "Source Sans 3",sans-serif;color:var(--gold);margin-top:4px}
+.hint{color:var(--mute);font-size:14px;margin:6px 0 0;text-align:center}
+.links{display:flex;gap:10px;flex-wrap:wrap}
+.links a{color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border:1px solid rgba(201,163,74,.55);border-radius:22px}
+.links a:hover{background:rgba(201,163,74,.14)}
+.links a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px max(3vw,12px)}
+#stage{width:100%;margin:0 auto}
+#book{margin:0 auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.45))}
+.controls{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:14px 12px 4px}
+button{font:600 15px "Source Sans 3",sans-serif;min-height:44px;min-width:44px;padding:0 16px;border-radius:22px;border:1px solid rgba(201,163,74,.55);background:transparent;color:var(--ink);cursor:pointer}
+button:hover{background:rgba(201,163,74,.14)}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+button:disabled{opacity:.35;cursor:default}
+#where{min-width:9em;text-align:center;font-variant-numeric:tabular-nums;color:var(--mute);white-space:nowrap}
+.strip{display:flex;justify-content:safe center;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px max(4vw,16px) 18px;max-width:100%}
+.strip button{flex:none;scroll-snap-align:center;padding:0;border-radius:3px;width:52px;height:80px;border:2px solid transparent;overflow:hidden;background:#fff}
+.strip button img{width:100%;height:100%;object-fit:cover;display:block}
+.strip button.on{border-color:var(--gold)}
+#zoom{position:fixed;inset:0;background:rgba(8,12,22,.94);display:none;overflow:auto;z-index:10}
+#zoom.open{display:block}
+#zoom .imgs{display:flex;justify-content:center;gap:12px;padding:64px 12px 24px;flex-wrap:wrap}
+#zoom img{width:min(100%,760px);height:auto;background:#fff;display:block}
+#zoom .close{position:fixed;top:12px;right:12px;background:var(--bg)}
+@media(max-width:600px){header{padding-top:12px}.hint{display:none}.strip button{width:42px;height:65px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <h1>The Covenant of Creation<small>Covenant Study · Lesson 1 · Genesis 1–2</small></h1>
+  <nav class="links"><a href="../../#t-flipbooks">← Library</a><a href="../../files/covenant-of-creation.pdf" download="Covenant Study 1 - The Covenant of Creation.pdf">Download PDF</a></nav>
+</header>
+<main>
+  <div id="stage"><div id="book"></div></div>
+  <div class="controls">
+    <button id="prev" aria-label="Previous page">← Prev</button>
+    <span id="where" aria-live="polite">Cover</span>
+    <button id="next" aria-label="Next page">Next →</button>
+    <button id="zoomBtn">Read up close</button>
+  </div>
+  <p class="hint">Drag a corner, click the edge, or use ← → keys</p>
+</main>
+<nav class="strip" id="strip" aria-label="Pages"></nav>
+<div id="zoom" role="dialog" aria-label="Page close-up"><button class="close" id="closeZoom">Close ✕</button><div class="imgs" id="zoomImgs"></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<script>
+{
+  const N = 12, RATIO = 1100/1700;
+  const pages = Array.from({length:N},(_,i)=>`pages/p${String(i+1).padStart(2,'0')}.jpg`);
+  const stage = document.getElementById('stage');
+  const where = document.getElementById('where');
+  const strip = document.getElementById('strip');
+  const prev = document.getElementById('prev'), next = document.getElementById('next');
+  const zoom = document.getElementById('zoom'), zoomImgs = document.getElementById('zoomImgs');
+
+  // Size the stage so a two-page spread fits the window height
+  const fit = () => {
+    const h = Math.max(380, window.innerHeight - 270);
+    const twoUp = window.innerWidth > 700;
+    stage.style.maxWidth = Math.round(h * RATIO * (twoUp ? 2 : 1)) + 'px';
+  };
+  fit();
+
+  const label = p => p === 0 ? 'Cover' : p === N-1 ? 'Back cover' : 'Page ' + (p+1);
+
+  strip.innerHTML = pages.map((src,i)=>`<button data-p="${i}" aria-label="${label(i)}"><img src="${src}" alt="" loading="lazy"></button>`).join('');
+
+  const flip = new St.PageFlip(document.getElementById('book'), {
+    width: 550, height: 850, size: 'stretch',
+    minWidth: 260, maxWidth: 1100, minHeight: 400, maxHeight: 1700,
+    showCover: true, usePortrait: true, maxShadowOpacity: 0.45,
+    mobileScrollSupport: false, flippingTime: 800
+  });
+  flip.loadFromImages(pages);
+
+  // Pages currently showing
+  const visible = () => {
+    const p = flip.getCurrentPageIndex();
+    if (flip.getOrientation() === 'portrait' || p === 0 || p === N-1) return [p];
+    const left = p % 2 ? p : p - 1;
+    return [left, left+1].filter(x => x > 0 && x < N);
+  };
+
+  const update = () => {
+    const v = visible();
+    where.textContent = v.length === 2 ? `Pages ${v[0]+1}–${v[1]+1}` : label(v[0]);
+    const p = flip.getCurrentPageIndex();
+    prev.disabled = p === 0;
+    next.disabled = v[v.length-1] >= N-1;
+    strip.querySelectorAll('button').forEach(b => b.classList.toggle('on', v.includes(+b.dataset.p)));
+    const on = strip.querySelector('.on');
+    if (on) on.scrollIntoView({block:'nearest', inline:'nearest'});
+  };
+
+  flip.on('flip', update);
+  flip.on('changeOrientation', update);
+  flip.on('init', update);
+
+  prev.addEventListener('click', () => flip.flipPrev());
+  next.addEventListener('click', () => flip.flipNext());
+  strip.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    flip.flip(+b.dataset.p);
+  });
+  document.addEventListener('keydown', e => {
+    if (zoom.classList.contains('open')) { if (e.key === 'Escape') closeZoom(); return; }
+    if (e.key === 'ArrowLeft') flip.flipPrev();
+    if (e.key === 'ArrowRight') flip.flipNext();
+  });
+
+  const closeZoom = () => { zoom.classList.remove('open'); document.getElementById('zoomBtn').focus(); };
+  document.getElementById('zoomBtn').addEventListener('click', () => {
+    zoomImgs.innerHTML = visible().map(i => `<img src="${pages[i]}" alt="${label(i)}">`).join('');
+    zoom.classList.add('open'); zoom.scrollTop = 0;
+    document.getElementById('closeZoom').focus();
+  });
+  document.getElementById('closeZoom').addEventListener('click', closeZoom);
+
+  let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => { fit(); flip.update(); update(); }, 150); });
+}
+</script>
+</body>
+</html>

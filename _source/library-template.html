@@ -208,13 +208,14 @@ const TOPICS=[
  {id:'growth',name:'Growth & Habits',blurb:'Practical cards on study and personal discipline.'},
  {id:'sermons',name:'Sermons',blurb:'Pre-sermon cards and notes to prepare, and highlights to review afterward, newest first.'},
  {id:'booklets',name:'Booklets',blurb:'Study booklets laid out to print double-sided and fold.'},
+ {id:'flipbooks',name:'Flip Books',blurb:'Booklets you can page through on screen, one page-turn at a time. Tap a cover to open; download the PDF to print.'},
  {id:'culture',name:'Life & Culture',blurb:'A biblical view of human life and dignity.'},
  {id:'shepherding',name:'Shepherding & Care',blurb:'Deacon and congregational care: guides and scripts for watching over the flock so no one drifts invisibly.'},
  {id:'outreach',name:'Outreach & Printables',blurb:'Our church brochure and ready-to-print cards to hand out.'}
 ];
 const inTopic=(it,id)=>it.topic===id;
 const ITEMS=__CATALOG__;
-const KIND={card:'Card',series:'Card series',print:'Print sheet',booklet:'Booklet'};
+const KIND={card:'Card',series:'Card series',print:'Print sheet',booklet:'Booklet',flipbook:'Flip book'};
 const $=s=>document.querySelector(s);
 const fmt=b=>b>1e6?(b/1e6).toFixed(1)+' MB':Math.round(b/1e3)+' KB';
 const ext=f=>f.split('.').pop().toUpperCase();
@@ -235,15 +236,15 @@ function matches(it){
 }
 function card(it){
   return `<article class="item">
-    <button class="thumb" type="button" data-open="${it.id}" aria-label="View ${esc(it.title)}">
+    ${it.flip?`<a class="thumb" href="${it.flip}" aria-label="Open the ${esc(it.title)} flip book">`:`<button class="thumb" type="button" data-open="${it.id}" aria-label="View ${esc(it.title)}">`}
       <img src="${it.thumb}" alt="" loading="lazy">
       ${it.kind!=='card'?`<span class="badge">${KIND[it.kind]}${it.n>1?' · '+it.n+' pp':''}</span>`:''}
-    </button>
+    ${it.flip?'</a>':'</button>'}
     <div class="series">${esc(it.series)}</div>
     <h3>${esc(it.title)}</h3>
     <p class="sub">${esc(it.sub)}</p>
     <div class="actions">
-      <button class="btn" type="button" data-dl="${it.id}">${DL}Download</button>
+      ${it.flip?`<a class="btn" href="${it.flip}">Open flip book</a><button class="btn ghost" type="button" data-dl="${it.id}">${DL}PDF</button>`:`<button class="btn" type="button" data-dl="${it.id}">${DL}Download</button>`}
       <span class="meta">${ext(it.file)} · ${fmt(it.size)}</span>
     </div>
   </article>`;
@@ -298,6 +299,7 @@ function shareLinkMsg(it,why){
 let lastFocus=null;
 function openViewer(id){
   const it=ITEMS.find(i=>i.id===id); if(!it) return;
+  if(it.flip){location.href=it.flip;return}
   lastFocus=document.activeElement;
   $('#vtitle').textContent=it.title;
   $('#vmeta').textContent=metaFor(it);

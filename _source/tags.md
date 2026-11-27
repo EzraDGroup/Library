@@ -51,6 +51,7 @@ Hidden search tags for each card. Tell Claude any changes (e.g. "remove *marriag
 - **What Is Love?** (Taking Thoughts Captive): love, mind
 - **How Do You Forgive Someone Who Isn’t Sorry?** (Taking Thoughts Captive): forgiveness, mind, sin, truth, peace, the cross, repentance
 - **You Cannot Separate Spiritual Authority from Holy Living** (Taking Thoughts Captive): holiness, mind, grace, salvation, spiritual gifts, faith, prayer, 2 Timothy
+- **Eyes to See, Ears to Hear** (Taking Thoughts Captive): holy spirit, mind, bible study, truth, discipleship, wisdom, faith, Luke, Acts, 1 Corinthians
 - **The Wicked Will Not Inherit the Earth** (Christians Will Win Down Here · Card 1): wisdom, sin, Proverbs, Psalms
 - **The King Has Taken His Throne** (Christians Will Win Down Here · Card 2): christ's lordship, kingdom of god, nations, hope, heaven
 - **The Nations Are His Inheritance** (Christians Will Win Down Here · Card 3): nations, great commission, promises of god, discipleship, obedience, kingdom of god, covenant, Genesis, Isaiah, Matthew

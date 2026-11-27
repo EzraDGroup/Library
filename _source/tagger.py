@@ -101,6 +101,7 @@ MANUAL = {
  'pre-sermon-remembering-love-of-the-lord': ['thanksgiving', 'remembrance', 'confession'],
  'covenant-of-creation': ['adam', 'image of god', 'sabbath'],
  'covenant-of-preservation-noah': ['noah', 'common grace', 'flood'],
+ 'under-law-under-grace-under-christ': ['lordship salvation', 'legalism', 'antinomianism', 'justification'],
 }
 
 if __name__ == '__main__':

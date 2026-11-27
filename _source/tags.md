@@ -258,3 +258,5 @@ Hidden search tags for each card. Tell Claude any changes (e.g. "remove *marriag
 - **Jesus and the Children (Luke 18:15–17)** (Sermon Highlights): children, kingdom of god, grace, faith, church, family, humility, gospel, Luke
 
 - **The Covenant of Creation** (Covenant Study · Lesson 1): adam, image of god, sabbath, covenant, creation, marriage, obedience, worship, church, sovereignty of god, Genesis, Hebrews, Exodus
+
+- **Under Law, Under Grace, Under Christ** (Taking Thoughts Captive): justification, antinomianism, legalism, lordship salvation, obedience, god's law, faith, covenant, grace, sin, salvation, Romans, Exodus, Matthew
